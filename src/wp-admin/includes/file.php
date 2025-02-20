@@ -635,7 +635,7 @@ function wp_edit_theme_plugin_file( $args ) {
 			wp_opcache_invalidate( $real_file, true );
 
 			if ( ! isset( $result['message'] ) ) {
-				$message = __( 'Something went wrong.' );
+				$message = __( 'An error occurred. Please try again later.' );
 			} else {
 				$message = $result['message'];
 				unset( $result['message'] );
@@ -2472,7 +2472,7 @@ function request_filesystem_credentials( $form_post, $type = '', $error = false,
 		);
 
 		if ( ! wp_installing() ) {
-			update_option( 'ftp_credentials', $stored_credentials );
+			update_option( 'ftp_credentials', $stored_credentials, false );
 		}
 
 		return $credentials;

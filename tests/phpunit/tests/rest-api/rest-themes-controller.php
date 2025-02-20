@@ -427,7 +427,7 @@ class WP_Test_REST_Themes_Controller extends WP_Test_REST_Controller_Testcase {
 		$this->assertArrayHasKey( 'responsive-embeds', $theme_supports );
 		$this->assertArrayHasKey( 'title-tag', $theme_supports );
 		$this->assertArrayHasKey( 'wp-block-styles', $theme_supports );
-		$this->assertCount( 24, $theme_supports, 'There should be 23 theme supports' );
+		$this->assertCount( 24, $theme_supports, 'There should be 24 theme supports' );
 	}
 
 	/**
@@ -582,8 +582,8 @@ class WP_Test_REST_Themes_Controller extends WP_Test_REST_Controller_Testcase {
 		$response = self::perform_active_theme_request();
 		$result   = $response->get_data();
 		$this->assertArrayHasKey( 'tags', $result[0] );
-		$this->assertSame( array( 'holiday', 'custom-menu' ), $result[0]['tags']['raw'] );
-		$this->assertSame( 'holiday, custom-menu', $result[0]['tags']['rendered'] );
+		$this->assertSame( array( 'Holiday', 'custom-menu' ), $result[0]['tags']['raw'] );
+		$this->assertSame( 'Holiday, custom-menu', $result[0]['tags']['rendered'] );
 	}
 
 	/**

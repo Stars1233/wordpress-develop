@@ -786,7 +786,7 @@ function switch_theme( $stylesheet ) {
 	}
 
 	$nav_menu_locations = get_theme_mod( 'nav_menu_locations' );
-	update_option( 'theme_switch_menu_locations', $nav_menu_locations );
+	update_option( 'theme_switch_menu_locations', $nav_menu_locations, true );
 
 	if ( func_num_args() > 1 ) {
 		$stylesheet = func_get_arg( 1 );
@@ -1893,7 +1893,7 @@ function _custom_background_cb() {
 		return;
 	}
 
-	$style = $color ? "background-color: #$color;" : '';
+	$style = $color ? 'background-color: ' . maybe_hash_hex_color( $color ) . ';' : '';
 
 	if ( $background ) {
 		$image = ' background-image: url("' . sanitize_url( $background ) . '");';
@@ -3001,7 +3001,7 @@ function _custom_logo_header_styles() {
 		<style id="custom-logo-css"<?php echo $type_attr; ?>>
 			<?php echo $classes; ?> {
 				position: absolute;
-				clip: rect(1px, 1px, 1px, 1px);
+				clip-path: inset(50%);
 			}
 		</style>
 		<?php
@@ -4395,6 +4395,7 @@ function _add_default_theme_supports() {
 	add_theme_support( 'automatic-feed-links' );
 
 	add_filter( 'should_load_separate_core_block_assets', '__return_true' );
+	add_filter( 'should_load_block_assets_on_demand', '__return_true' );
 
 	/*
 	 * Remove the Customizer's Menus panel when block theme is active.
